@@ -3,9 +3,20 @@
 <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">
-        <div class="article-metadata">
+        <div class="article-metadata" style="display: flex; align-items: center;">
             <a class="mr-2" href="#">{{ object.author }}</a>
             <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            <div style="margin-left: auto;">
+            {% if object.author == user %}
+                  <button class="btn btn-secondary btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  ...
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a class="dropdown-item" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="dropdown-item" href="{% url 'post-delete' object.id %}">Delete</a>
+                  </div>
+            {% endif %}
+            </div>
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
