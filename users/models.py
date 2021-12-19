@@ -14,9 +14,11 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     def save(self, *args, **kwargs):
-        if self.tracker.has_changed('image'):
-            if os.path.isfile(self.tracker.previous('image').path):
-                os.remove(self.tracker.previous('image').path)
+        # Issue with deleting the default profile pics
+        if self._state.adding is False:  # It means object is being updated not created
+            if self.tracker.has_changed('image') and self.tracker.previous('image').name != "default.jpg":
+                if os.path.isfile(self.tracker.previous('image').path):
+                    os.remove(self.tracker.previous('image').path)
         super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
