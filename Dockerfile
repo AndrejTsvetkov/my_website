@@ -17,10 +17,15 @@ RUN chmod +x /scripts/*
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
+COPY ./media /vol/web/media
 
 RUN adduser -D user
 RUN chown -R user:user /vol
-RUN chmod -R 755 /vol/web
+RUN chmod -R 755 /vol
+
+RUN chown user:user /app
+RUN chown -R user:user db.sqlite3
+RUN chmod -R 755 db.sqlite3
 USER user
 
 CMD ["entrypoint.sh"]
