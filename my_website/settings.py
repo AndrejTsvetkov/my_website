@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,8 +82,11 @@ WSGI_APPLICATION = 'my_website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -148,4 +152,4 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 # Override production variables if DJANGO_DEVELOPMENT env variable is set
 if os.environ.get('DJANGO_DEVELOPMENT'):
-    from .settings_dev import DEBUG, SECRET_KEY, ALLOWED_HOSTS, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+    from .settings_dev import DEBUG, SECRET_KEY, ALLOWED_HOSTS, STATIC_URL, MEDIA_URL, MEDIA_ROOT, DATABASES

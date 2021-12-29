@@ -4,17 +4,25 @@ services:
   app:
     build:
       context: .
+    restart: always
     volumes:
       - static_volume:/vol/web/static
       - media_volume:/vol/web/media
     environment:
-      - SECRET_KEY=
+      - SECRET_KEY=django-insecure-lu*w!l0bi(y(5t6x^mruy*)p%5vwp#q(*+r6!_wrc$$=!g4a#+j
       - ALLOWED_HOSTS=127.0.0.1,localhost
       - DEBUG=0
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+    depends_on:
+      - db
 
   proxy:
     build:
       context: ./proxy
+    restart: always
     volumes:
       - static_volume:/vol/web/static
       - media_volume:/vol/web/media
@@ -23,6 +31,17 @@ services:
     depends_on:
       - app
 
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
+
 volumes:
   static_volume:
   media_volume:
+  postgres_data:

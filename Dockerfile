@@ -4,9 +4,12 @@ ENV PATH="/scripts:${PATH}"
 
 COPY ./requirements.txt /requirements.txt
 RUN apk add --update --no-cache --virtual .tmp gcc jpeg-dev zlib-dev libc-dev linux-headers
+RUN apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-deps \
+        build-base postgresql-dev musl-dev
 RUN pip install -r /requirements.txt
 RUN apk add libjpeg
-RUN apk del .tmp
+RUN apk del .tmp .tmp-deps
 
 RUN mkdir /app
 COPY . /app
