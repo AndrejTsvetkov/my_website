@@ -27,7 +27,7 @@ services:
       - static_volume:/vol/web/static
       - media_volume:/vol/web/media
     ports:
-      - "8080:8080"
+      - "80:80"
     depends_on:
       - app
 
@@ -35,7 +35,7 @@ services:
     image: postgres:13-alpine
     restart: always
     volumes:
-      - ./sample_database:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
