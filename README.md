@@ -2,20 +2,49 @@
 # Blog Site  
 
 This is my first web project. It's a blog where people can read, add, delete and update posts.
-You can visit the site by following this [link.](http://89.108.70.158/)
 
+## Demo
+
+You can visit the site by following this [link.](http://3.142.247.127/)
+
+## Deployment
+
+To deploy the project follow these steps.
+
+1. Clone the project:
+
+```Shell
+git clone https://github.com/AndrejTsvetkov/my_website.git
+```
+
+2. Install Git on your deployment server.
+
+3. Install Docker and Docker Compose (for the latter you can use the following [link.](https://docs.docker.com/compose/install/)
+
+4. Create .env file and specify your own environment variables (you can see an example of how to set variables in the [.env.sample](./.env.sample) file)
+
+5. Create a directory ```./media```. He has to be in the root directory of your project.
+
+6. Put in the ```./media``` directory an image you would like to use as the default profile picture for all new users.
+The image must be named ```default.jpg```.
+
+7. Create superuser you will use to log in to the admin page:
+
+```Shell
+docker-compose -f docker-compose-deploy.yml run --rm app sh -c "python manage.py createsuperuser"
+```
 
 ## Roadmap
 
-- Enable HTTPS with a free SSL/TLS Certificate
+- [ ] Enable HTTPS with a free SSL/TLS Certificate
 
-- Use a custom domain name
+- [ ] Use a custom domain name
 
-- Use AWS S3 for file uploads
+- [ ] Use AWS S3 for file uploads
 
-- Add a comments section
+- [ ] Add a comments section
 
-- Add containerization using docker 
+- [x] Add containerization using Docker and Docker Compose
 
 ## Authors
 
