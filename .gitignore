@@ -37,6 +37,7 @@ env.bak/
 venv.bak/
 
 .idea/
+/media
 
 # sqlite database
 *.db
