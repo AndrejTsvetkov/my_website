@@ -8,7 +8,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from django.views.generic.edit import FormMixin
+from django.urls import reverse
+from .models import Post, Comment
+from .forms import AddCommentForm
 
 
 def home(request):
@@ -37,8 +40,31 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     model = Post
+    form_class = AddCommentForm
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = AddCommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.name = self.request.user
+        form.instance.post = self.object
+        form.save()
+        return super().form_valid(form)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
