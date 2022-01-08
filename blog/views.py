@@ -40,7 +40,7 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(FormMixin, DetailView):
+class PostDetailView(LoginRequiredMixin, FormMixin, DetailView):
     model = Post
     form_class = AddCommentForm
 
