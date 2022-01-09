@@ -20,7 +20,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     name = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()
+    body = models.TextField("Leave a comment")
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
 

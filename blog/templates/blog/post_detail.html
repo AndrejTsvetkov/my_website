@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 {% block content %}
 <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
@@ -23,19 +24,20 @@
         <p class="article-content">{{ object.content }}</p>
     </div>
 </article>
-<h3>Comments</h3>
+
 {% if not post.comments.all %}
-        No comments yet...
+    <h3>No comments yet...</h3>
 {% else %}
+    <h3>Comments({{ object.comments.count }})</h3>
     {% for  comment in object.comments.all %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ comment.name.profile.image.url }}">
           <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="">{{ comment.name }}</a>
-              <small class="text-muted">{{ comment.created_on }}</small>
+            <div>
+              <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ comment.name }}</h5>
+              <small class="text-muted">{{ comment.created_on|naturaltime }}</small>
             </div>
-            <p class="article-content">{{ comment.body }}</p>
+            <p>{{ comment.body }}</p>
           </div>
         </article>
     {% endfor %}
@@ -44,7 +46,7 @@
 <form method="post">
     {% csrf_token %}
     {{ comment_form|crispy }}
-    <button type="submit">Submit</button>
+    <button class="btn btn-outline-info" type="submit">Comment</button>
 </form>
 
 {% endblock content %}
