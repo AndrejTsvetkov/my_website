@@ -12,6 +12,7 @@ from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from .models import Post, Comment
 from .forms import AddCommentForm
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -54,11 +55,17 @@ class PostDetailView(LoginRequiredMixin, FormMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
+        if 'post_comment' in request.POST:
+            form = self.get_form()
+            if form.is_valid():
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
         else:
-            return self.form_invalid(form)
+            comment_id = request.POST.get('delete_comment')
+            comment = Comment.objects.get(id=comment_id)
+            comment.delete()
+            return HttpResponseRedirect(self.get_success_url())
 
     def form_valid(self, form):
         form.instance.name = self.request.user

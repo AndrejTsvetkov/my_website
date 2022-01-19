@@ -39,6 +39,10 @@ ul {
   margin-bottom: 20px;
 }
 
+.comment-section {
+    padding: 10px 10px 10px 20px;
+}
+
 .article-title {
   color: #444444;
 }
