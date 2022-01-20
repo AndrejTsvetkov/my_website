@@ -26,9 +26,9 @@
 </article>
 
 {% if not post.comments.all %}
-    <h3>No comments yet...</h3>
+    <h4>No comments yet...</h4>
 {% else %}
-    <h3>Comments({{ object.comments.count }})</h3>
+    <h4><i class="fa fa-comments"></i> Comments({{ object.comments.count }})</h4>
     {% for  comment in object.comments.all %}
         <article class="media content-section comment-section">
           <img class="rounded-circle article-img" src="{{ comment.name.profile.image.url }}">

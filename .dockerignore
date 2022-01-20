@@ -15,3 +15,5 @@ venv/
 data/
 
 .idea/
+# Development database
+*.sqlite3

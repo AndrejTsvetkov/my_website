@@ -26,7 +26,7 @@ RUN adduser -D user
 RUN chown -R user:user /vol
 RUN chmod -R 755 /vol
 
-RUN chown user:user /app
+RUN chown -R user:user /app
 USER user
 
 CMD ["entrypoint.sh"]
