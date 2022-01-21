@@ -50,7 +50,9 @@ Make sure that you have the port opened on your deployment machine. Also if you 
 
 - [ ] Use AWS S3 for file uploads
 
-- [ ] Add a comments section
+- [x] Add a comments section
+
+- [ ] Add comment updates without reloading the page (use Django Channels)
 
 - [x] Add containerization using Docker and Docker Compose
 
