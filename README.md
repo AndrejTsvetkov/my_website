@@ -50,6 +50,8 @@ Make sure that you have the port opened on your deployment machine. Also if you 
 
 - [ ] Use AWS S3 for file uploads
 
+- [ ] Use AWS SES for sending emails
+
 - [x] Add a comments section
 
 - [ ] Add comment updates without reloading the page (use Django Channels)
