@@ -80,6 +80,8 @@ of your account and will block attempts to authorize from insecure apps.
 
 - [ ] Add comment updates without reloading the page (use Django Channels)
 
+- [ ] Add a sidebar with the most popular posts
+
 - [x] Add containerization using Docker and Docker Compose
 
 ## Authors
