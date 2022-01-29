@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load blog_tags %}
 <html>
 <head>
 
@@ -61,13 +62,14 @@
             </div>
             <div class="col-md-4">
               <div class="content-section">
-                <h3>Our Sidebar</h3>
-                <p class='text-muted'>You can put any information here you'd like.
-                  <ul class="list-group">
-                    <li class="list-group-item list-group-item-light">Latest Posts</li>
-                    <li class="list-group-item list-group-item-light">Announcements</li>
-                    <li class="list-group-item list-group-item-light">Calendars</li>
-                    <li class="list-group-item list-group-item-light">etc</li>
+                <h3>Recent Posts</h3>
+                {% get_recent_posts as recent_post_list %}
+                  <ul class="list-unstyled">
+                    {% for post in recent_post_list %}
+                    <li style="margin:10px 0 10px 0; vertical-align:top">
+                        <a class="article-title" href ="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                    </li>
+                    {% endfor %}
                   </ul>
                 </p>
               </div>
@@ -80,6 +82,7 @@
       <div class="footer-middle">
           <div class="container">
             <div class="row align-items-center">
+
               <div class="col-4">
                   <h5>Andrej Tsvetkov</h5>
               </div>
