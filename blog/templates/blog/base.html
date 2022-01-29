@@ -62,16 +62,28 @@
             </div>
             <div class="col-md-4">
               <div class="content-section">
-                <h3>Recent Posts</h3>
+                <h4><i class="fa fa-calendar"></i> Recent Posts</h4>
                 {% get_recent_posts as recent_post_list %}
                   <ul class="list-unstyled">
                     {% for post in recent_post_list %}
                     <li style="margin:10px 0 10px 0; vertical-align:top">
                         <a class="article-title" href ="{% url 'post-detail' post.id %}">{{ post.title }}</a>
                     </li>
+                    {% empty %}
+                    <p>No post yet!</p>
                     {% endfor %}
                   </ul>
-                </p>
+                <h4><i class="fa fa-fire" style="color:#E25822;"></i> Trending</h4>
+                {% get_popular_posts as popular_post_list %}
+                  <ul class="list-unstyled">
+                    {% for post in popular_post_list %}
+                    <li style="margin:10px 0 10px 0; vertical-align:top">
+                        <a class="article-title" href ="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                    </li>
+                    {% empty %}
+                    <p>No post yet!</p>
+                    {% endfor %}
+                  </ul>
               </div>
             </div>
           </div>
