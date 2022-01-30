@@ -8,7 +8,7 @@
               <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
               <div style="margin-left: auto;">
-                  <h6 class="text-muted">{{ post.comments.count }} <i class="fa fa-comments"></i></h6>
+                  <h6 class="text-muted"><i class="fa fa-comments"></i> {{ post.comments.count }}</h6>
               </div>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
