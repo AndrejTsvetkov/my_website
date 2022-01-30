@@ -50,11 +50,9 @@
         </article>
     {% endfor %}
 {% endif %}
-
 <form method="post">
     {% csrf_token %}
     {{ comment_form|crispy }}
-    <button class="btn btn-outline-info" type="submit" name="post_comment">Comment</button>
+    <button class="btn btn-outline-info" type="submit" name="post_comment" style="margin-bottom: 20px;">Comment</button>
 </form>
-
 {% endblock content %}
