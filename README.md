@@ -1,11 +1,31 @@
 
 # Blog Site  
 
-This is my first web project. It's a blog where people can read, add, delete and update posts.
-
-## Demo
+Web Blog using Python/Django.
 
 You can visit the site by following this [link.](http://3.142.247.127/)
+
+## Overview
+
+This is my first web project. It's full-featured web-application, where people can create a profile, write posts, leave comments, reset their password and so on.
+I've learned a lot of things along the way, such as how to create an API, deploy a project or build interfaces using Bootstrap. I faced some challenges and it made me
+learn new things and look for better solutions.
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- Bootstrap
+- Python
+- Django
+- Django Rest Framework
+- Git
+- GitHub
+- Docker
+- Docker Compose
+- uWSGI
+- Nginx
+- AWS EC2
 
 ## Deployment
 
@@ -80,7 +100,7 @@ of your account and will block attempts to authorize from insecure apps.
 
 - [ ] Add comment updates without reloading the page (use Django Channels)
 
-- [ ] Add a sidebar with the most popular posts
+- [x] Add a sidebar with the most popular posts
 
 - [x] Add containerization using Docker and Docker Compose
 
