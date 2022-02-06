@@ -7,7 +7,6 @@ services:
     restart: always
     volumes:
       - static_volume:/vol/web/static
-      - media_volume:/vol/web/media
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
@@ -18,6 +17,10 @@ services:
       - DB_PASS=${DB_PASS}
       - EMAIL_HOST_USER=${EMAIL_HOST_USER}
       - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+      - AWS_PUBLIC_MEDIA_LOCATION=${AWS_PUBLIC_MEDIA_LOCATION}
     depends_on:
       - db
 
@@ -27,7 +30,6 @@ services:
     restart: always
     volumes:
       - static_volume:/vol/web/static
-      - media_volume:/vol/web/media
     ports:
       - "80:80"
     depends_on:
@@ -45,5 +47,4 @@ services:
 
 volumes:
   static_volume:
-  media_volume:
   postgres_data:
