@@ -10,6 +10,7 @@
 .env/
 .venv/
 venv/
+.env.sample
 
 # Local PostgreSQL data
 data/
@@ -17,3 +18,5 @@ data/
 .idea/
 # Development database
 *.sqlite3
+
+README.md

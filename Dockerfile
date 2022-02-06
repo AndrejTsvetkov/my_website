@@ -18,9 +18,7 @@ COPY ./scripts /scripts
 
 RUN chmod +x /scripts/*
 
-RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
-COPY ./media /vol/web/media
 
 RUN adduser -D user
 RUN chown -R user:user /vol
