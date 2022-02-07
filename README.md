@@ -26,6 +26,7 @@ learn new things and look for better solutions.
 - uWSGI
 - Nginx
 - AWS EC2
+- AWS S3
 
 ## Deployment
 
@@ -94,7 +95,7 @@ of your account and will block attempts to authorize from insecure apps.
 
 - [ ] Use a custom domain name
 
-- [ ] Use AWS S3 for file uploads
+- [x] Use AWS S3 for file uploads
 
 - [x] Add a comments section
 
